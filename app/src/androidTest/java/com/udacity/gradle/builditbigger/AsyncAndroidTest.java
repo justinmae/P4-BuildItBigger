@@ -9,7 +9,7 @@ public class AsyncAndroidTest extends AndroidTestCase{
     public void testVerifyAsyncResponse() {
         String result = null;
         try {
-            result = new EndpointsAsyncTask().execute(getContext()).get();
+            result = new EndpointsAsyncTask(null).execute(getContext()).get();
         } catch (Exception e) {
             e.printStackTrace();
         }
