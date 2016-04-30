@@ -9,7 +9,7 @@ import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 import com.udacity.gradle.builditbigger.backend.myApi.model.MyBean;
 
-import java.io.IOException;
+import  java.io.IOException;
 
 import gradle.udacity.com.displaylibrary.DisplayActivity;
 
@@ -44,6 +44,7 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
         Intent intent = new Intent(context, DisplayActivity.class);
         intent.putExtra(DisplayActivity.JOKE_KEY, result);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 }
