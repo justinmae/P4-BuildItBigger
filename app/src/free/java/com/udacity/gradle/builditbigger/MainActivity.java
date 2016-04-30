@@ -7,20 +7,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.google.android.gms.ads.InterstitialAd;
-
 public class MainActivity extends ActionBarActivity {
 
     private ProgressBar progressBar;
-    private InterstitialAd interstitialAd;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        interstitialAd = new InterstitialAd(this);
     }
 
 
@@ -49,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
     public void tellJoke(View view){
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
-        new EndpointsAsyncTask(progressBar, interstitialAd).execute(this);
+        new EndpointsAsyncTask(progressBar).execute(this);
     }
 
 }

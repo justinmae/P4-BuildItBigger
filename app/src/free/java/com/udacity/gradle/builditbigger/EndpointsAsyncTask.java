@@ -28,9 +28,8 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     private InterstitialAd mInterstitialAd;
     private String mResult;
 
-    public EndpointsAsyncTask(ProgressBar progressBar, InterstitialAd interstitialAd) {
+    public EndpointsAsyncTask(ProgressBar progressBar) {
         mProgressBar = progressBar;
-        mInterstitialAd = interstitialAd;
     }
 
     @Override
@@ -59,31 +58,29 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
             mProgressBar.setVisibility(View.GONE);
         }
 
-        if (mInterstitialAd != null) {
-            mInterstitialAd = new InterstitialAd(context);
-            mInterstitialAd.setAdUnitId(context.getString(R.string.banner_ad_unit_id));
+        mInterstitialAd = new InterstitialAd(context);
+        mInterstitialAd.setAdUnitId(context.getString(R.string.banner_ad_unit_id));
 
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdClosed() {
-                    startJokeActivity();
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                startJokeActivity();
 
-                }
+            }
 
-                @Override
-                public void onAdLoaded() {
-                    mInterstitialAd.show();
-                }
+            @Override
+            public void onAdLoaded() {
+                mInterstitialAd.show();
+            }
 
-                @Override
-                public void onAdFailedToLoad(int errorCode) {
-                    super.onAdFailedToLoad(errorCode);
-                    startJokeActivity();
-                }
-            });
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                super.onAdFailedToLoad(errorCode);
+                startJokeActivity();
+            }
+        });
 
-            requestNewInterstitial();
-        }
+        requestNewInterstitial();
     }
 
     private void startJokeActivity() {
