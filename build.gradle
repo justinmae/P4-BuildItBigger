@@ -18,3 +18,11 @@ allprojects {
     }
 }
 
+task runUdacityTests (dependsOn:[
+        ':backend:appengineRun',
+        ':app:connectedAndroidTest',
+        ':backend:appengineStop'
+])
+
+tasks.getByPath(':app:connectedAndroidTest').mustRunAfter(tasks.getByPath(':backend:appengineRun'))
+tasks.getByPath(':backend:appengineStop').mustRunAfter(tasks.getByPath(':app:connectedAndroidTest'))
